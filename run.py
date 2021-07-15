@@ -1,9 +1,12 @@
 import os
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash
+
+if os.path.exists("env.py"): 
+    import env
 
 app = Flask(__name__)  # Standard Flask app
-
+app.secret_key = os.environ.get('FLASK_SECRET_KEY') or 'secret-key' # Secret key for session management.
 
 @app.route("/")  # Standard Flask app route
 def index():
@@ -29,8 +32,10 @@ def about_member(member_name):
     return render_template("member.html", member=member)  # And render the results
 
 
-@app.route("/contact")  # Standard Flask app route
+@app.route("/contact", methods=["GET", "POST"])  # Standard Flask app route
 def contact():
+    if request.method == "POST":  # If the form has been submitted...
+        flash("Thanks {}, we have received your message!".format(request.form["name"]))  # Flash a message
     return render_template("contact.html", page_title="Contact Us")
 
 
