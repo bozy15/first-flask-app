@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+<!-- Inherit from base.html -->
 {% block content %}
+<!-- Content -->
 
 <h2>{{ page_title }}</h2>
 <p>
@@ -13,10 +15,12 @@
 </p>
 
 {% for member in company %}
+<!-- Loop over the company members and add them to html -->
 
 <div class="row featurette">
 
     {% if loop.index % 2 != 0 %}
+    <!-- If the loop index is odd, add a left column to the row -->
 
     <div class="col-md-7">
         <h3>{{ loop.index }}. {{ member.name }}</h3>
@@ -28,6 +32,7 @@
     </div>
 
     {% else %}
+    <!-- If the loop index is even, add a right column to the row -->
     <div class="col-md-5">
         <img src="{{ member.image_source }}" alt="Image of Thorin hold his sword ready to attack"
             class="featurette-image image-responsive">
@@ -38,14 +43,20 @@
     </div>
 
     {% endif %}
+    <!-- End of if loop.index % 2 != 0 -->
 
 </div>
 
 {% if loop.index != loop.length %}
+<!-- If the loop index is not the length of the company, add a <hr> to separate the members -->
 
-    <hr class="featurette-divider">
+<hr class="featurette-divider">
 
 {% endif %}
+<!-- End of if loop.index != loop.length -->
+
 {% endfor %}
+<!-- End of for loop -->
 
 {% endblock %}
+<!-- End of content -->
