@@ -29,5 +29,8 @@
    "python.formatting.provider": "black",
    "[css]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
+   },
+   "[json]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
    }
 }
